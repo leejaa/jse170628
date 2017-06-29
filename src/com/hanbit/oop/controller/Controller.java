@@ -1,6 +1,6 @@
 package com.hanbit.oop.controller;
 import java.util.Scanner;
-import com.hanbit.oop.service.BmiService;
+import com.hanbit.oop.service.CalcService;
 import com.hanbit.oop.service.CalculatorService;
 import com.hanbit.oop.service.GradeReportService;
 import com.hanbit.oop.service.LeapYearService;
@@ -13,7 +13,7 @@ public class Controller {
 	public static void main(String[] args) {
 		Scanner s=new Scanner(System.in);
 		
-		BmiService s2=new BmiService();
+		CalcService cal=new CalcService();
 		TaxCalculatorService ts=new TaxCalculatorService();
 		CalculatorService cs=new CalculatorService();
 		LeapYearService ls=new LeapYearService();
@@ -33,7 +33,7 @@ public class Controller {
 				double weight=s.nextDouble();
 				System.out.println("Write Your Height..");
 				double height=s.nextDouble();
-				String result=s2.excute(weight,height);
+				String result=cal.calcBMI(weight,height);
 				System.out.print(String.format("당신은 %s 입니다 \n", result ));
 				break;
 			case "2" : 
@@ -46,12 +46,28 @@ public class Controller {
 				break;
 			case "3":
 				System.out.println("첫번째 수를 입력해주세요..");
-				int num1=s.nextInt();
-				System.out.println("첫번째 수를 입력해주세요..");
-				int num2=s.nextInt();
+				int n1=s.nextInt();
+				System.out.println("두번째 수를 입력해주세요..");
+				int n2=s.nextInt();
 				System.out.println("opcode를 입력해주세요..");
 				String opcode=s.next();
-				int result2=cs.excute(num1, num2, opcode);
+				int result2=0;
+				switch (opcode) {
+				case "+":
+					result2=cal.calcPlus(n1, n2);
+					break;
+				case "-":
+					result2=cal.calcMinus(n1, n2);
+					break;
+				case "*":
+					result2=cal.calcMultiply(n1, n2);
+					break;
+				case "/":
+					result2=cal.calcDivide(n1, n2);
+					break;
+				default:
+					break;
+				}
 				System.out.println(String.format("결과값 : %d", result2));
 				break;
 			case "4":
