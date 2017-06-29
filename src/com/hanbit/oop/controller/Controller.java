@@ -1,23 +1,20 @@
 package com.hanbit.oop.controller;
 import java.util.Scanner;
+import com.hanbit.oop.service.BMIService;
 import com.hanbit.oop.service.CalcService;
-import com.hanbit.oop.service.CalculatorService;
-import com.hanbit.oop.service.GradeReportService;
+import com.hanbit.oop.service.GradeService;
 import com.hanbit.oop.service.LeapYearService;
 import com.hanbit.oop.service.LoginService;
 import com.hanbit.oop.service.SSNService;
 import com.hanbit.oop.service.SecondService;
-import com.hanbit.oop.service.TaxCalculatorService;
 
 public class Controller {
 	public static void main(String[] args) {
 		Scanner s=new Scanner(System.in);
-		
+		BMIService bs=new BMIService();
 		CalcService cal=new CalcService();
-		TaxCalculatorService ts=new TaxCalculatorService();
-		CalculatorService cs=new CalculatorService();
 		LeapYearService ls=new LeapYearService();
-		GradeReportService gs=new GradeReportService();
+		GradeService gs=new GradeService();
 		LoginService login=new LoginService();
 		SSNService ss=new SSNService();
 		SecondService sce=new SecondService();
@@ -26,65 +23,65 @@ public class Controller {
 			System.out.println("select menu...  0.stop 1.bmi 2.tax 3.Calculator 4.LeapYear 5.GradeReport 6.Login 7.SSN 8.Time");
 			switch (s.next()) {
 			case "0":
-				System.out.println("bmi stop..");
+				System.out.println("program stop..");
 				return;
 			case "1":
-				System.out.println("Write Your Weight ..");
+				System.out.println("input your weight..");
 				double weight=s.nextDouble();
-				System.out.println("Write Your Height..");
+				bs.setWeight(weight);
+				System.out.println("input your height..");
 				double height=s.nextDouble();
-				String result=cal.calcBMI(weight,height);
-				System.out.print(String.format("당신은 %s 입니다 \n", result ));
+				bs.setHeight(height);
+				bs.setBmi();
+				bs.setResult();
+				System.out.println(bs.getResult());
 				break;
 			case "2" : 
 				System.out.println("Write Your Name..");
 				String name=s.next();
 				System.out.println("Write your Salary..");
-				double salary=s.nextDouble();
-				double tax=ts.excute(salary);
-				System.out.println(String.format("%s님께서 납부하실 세금은 %d 원 입니다..", name,tax));
+				int salary=s.nextInt();
+				cal.setTax(salary);
+				System.out.println(String.format("%s님께서 납부하실 세금은 %d 원 입니다..", name,cal.getTax()));
 				break;
 			case "3":
 				System.out.println("첫번째 수를 입력해주세요..");
 				int n1=s.nextInt();
+				cal.setN1(n1);
 				System.out.println("두번째 수를 입력해주세요..");
 				int n2=s.nextInt();
+				cal.setN2(n2);
 				System.out.println("opcode를 입력해주세요..");
 				String opcode=s.next();
-				int result2=0;
-				switch (opcode) {
-				case "+":
-					result2=cal.calcPlus(n1, n2);
-					break;
-				case "-":
-					result2=cal.calcMinus(n1, n2);
-					break;
-				case "*":
-					result2=cal.calcMultiply(n1, n2);
-					break;
-				case "/":
-					result2=cal.calcDivide(n1, n2);
-					break;
-				default:
-					break;
-				}
-				System.out.println(String.format("결과값 : %d", result2));
+				cal.setOpcode(opcode);
+				cal.setResult();
+				System.out.println(String.format("결과값 : %d", cal.getResult()));
 				break;
 			case "4":
 				System.out.println("년도를 입력해주세요..");
 				int year=s.nextInt();
-				String leapYear=ls.excute(year);
-				System.out.println(leapYear+"입니다..");
+				ls.setYear(year);
+				ls.setResult();
+				System.out.println(ls.getResult());
 				break;
 			case "5":
-				System.out.println("국어점수를 입력해주세요..");
+				System.out.println("what's your name?");
+				String name2=s.next();
+				gs.setName(name2);
+				System.out.println("what's your major?");
+				String major=s.next();
+				gs.setMajor(major);
+				System.out.print("국어점수?\n");
 				int kor=s.nextInt();
-				System.out.println("영어점수를 입력하세요..");
+				gs.setKor(kor);
+				System.out.print("영어점수?\n");
 				int eng=s.nextInt();
-				System.out.println("수학점수를 입력하세요..");
+				gs.setEng(eng);
+				System.out.print("수학점수?\n");
 				int math=s.nextInt();
-				String ment=gs.excute(kor, eng, math);
-				System.out.println(ment);
+				gs.setMath(math);
+				gs.setGrade();
+				System.out.println(gs.toString());
 				break;
 			case "6":
 				System.out.println("ID를 입력해주세요..");
@@ -96,10 +93,10 @@ public class Controller {
 				break;
 			case "7":
 				System.out.println("이름을 입력해주세요..");
-				String name2=s.next();
+				String name3=s.next();
 				System.out.println("주민등록번호를 입력해주세요..");
 				String ssn=s.next();
-				String result3=ss.excute(name2, ssn);
+				String result3=ss.excute(name3, ssn);
 				System.out.println(result3);
 				break;
 			case "8":

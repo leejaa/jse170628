@@ -1,36 +1,51 @@
 package com.hanbit.oop.service;
 
 public class CalcService {
-	public String calcBMI(double weight, double height){
-		
-		double height2 = height/100;
-		double bmi = weight/height2/height2;
-		String result="";
-		
-		if(bmi-18.5<0){
-			result = "저체중";
-		}else if(bmi-24.9<0){
-			result = "정상";
-		}else if(bmi-29.9<0){
-			result = "과체중";
-		}else{
-			result = "비만";
+	private int n1,n2,result;
+	private String opcode;
+	private double tax;
+	public void setN1(int n1){
+		this.n1=n1;
+	}
+	public void setN2(int n2){
+		this.n2=n2;
+	}
+	public void setOpcode(String opcode){
+		this.opcode=opcode;
+	}
+	public void setResult(){
+		switch(opcode){
+		case "+":
+			result=n1+n2;
+			break;
+		case "-":
+			result=(n1>n2)?n1-n2:n2-n1;
+			break;
+		case "*":
+			result=n1*n2;
+			break;
+		case "/":
+			result=(n1>n2)?n1/n2:n2/n1;
+			break;
 		}
+	}
+	public void setTax(int salary){
+		this.tax=salary*0.097;
+	}
+	public int getN1(){
+		return n1;
+	}
+	public int getN2(){
+		return n2;
+	}
+	public int getResult(){
 		return result;
 	}
-	public int calcPlus(int n1,int n2){
-		return n1+n2;
+	public String getOpcode(){
+		return opcode;
 	}
-	public int calcMinus(int n1,int n2){
-		return (n1>n2)?n1-n2:n2-n1;
+	public double getTax(){
+		return tax;
 	}
-	public int calcDivide(int n1,int n2){
-		return (n1>n2)?n1/n2:n2/n1;
-	}
-	public double calcTax(int salary){
-		return 0.097*salary;
-	}
-	public int calcTime(int second){
-		return n1*n2;
-	}
+	
 }
