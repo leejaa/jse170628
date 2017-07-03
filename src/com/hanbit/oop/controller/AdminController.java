@@ -26,7 +26,7 @@ public class AdminController {
 				JOptionPane.showConfirmDialog(null,service.countMembers()+"명");
 				break;
 			case "3":
-				JOptionPane.showConfirmDialog(null, service.getMembers());
+				JOptionPane.showConfirmDialog(null, service.toString());
 				break;
 			}
 		}
