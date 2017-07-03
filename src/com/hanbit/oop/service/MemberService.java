@@ -1,24 +1,15 @@
 package com.hanbit.oop.service;
 
-public class MemberService {
-	private String id,pw,gender,ssn,name,login;
-	private int age;
+import com.hanbit.oop.domain.MemberBean;
 
-	public void setId(String id){
-		this.id=id;
+public class MemberService {
+	MemberBean session;
+	public MemberService(){
+		session=new MemberBean();
 	}
-	public String getId(){
-		return id;
-	}
-	public void setPw(String pw){
-		this.pw=pw;
-	}
-	public String getPw(){
-		return pw;
-	}
-	public void setGender(){
-		char ch = ssn.charAt(7);
-		
+	public String getGender(MemberBean member){
+		String gender="";
+		char ch = member.getSsn().charAt(7);
 		switch(ch){
 		case '1' : case '3' :
 			gender = "남자"; 
@@ -33,49 +24,36 @@ public class MemberService {
 			gender = "기타";
 			break;
 		}
-	}
-	public String getGender(){
 		return gender;
 	}
-	public void setSsn(String ssn){
-		this.ssn=ssn;
-	}
-	public String getSsn(){
-		return ssn;
-	}
-	public void setName(String name){
-		this.name=name;
-	}
-	public String getName(){
-		return name;
-	}
-	public String getLogin(){
-		return login;
-	}
-	public void setAge(){
-		String birth = ssn.substring(0,2);
+	public String getAge(MemberBean member){
+		int age=0;
+		String birth = member.getSsn().substring(0,2);
 		if(Integer.parseInt(birth)>=17){
 			age = 2017-Integer.parseInt(birth)-1900+1;
 		}else{
 			age = 2017-Integer.parseInt(birth)-2000+1;
 		}
+		return String.valueOf(age);
 	}
-	public int getAge(){
-		return age;
-	}
-	public void setLogin(String id,String pw){
-		setAge();
-		setGender();
-		
-		System.out.println("저장된 아이디 비번" + this.id + "/" + this.pw);
-		System.out.println("입력한 아이디 비번"+ id + "/" + pw);
-		if(id.equals(this.id)&&pw.equals(this.pw)){
-			this.login=toString();
+	public String login(MemberBean member){
+		String login="";
+		System.out.println("세션에 저장된 아이디 비번" + session.getId() + "/" + session.getPw());
+		System.out.println("입력한 아이디 비번"+ member.getId() + "/" + member.getPw());
+		if(session.getId().equals(member.getId())&&session.getPw().equals(member.getPw())){
+			login="welcome "+session.getName()+"("+getAge(session)+")"+getGender(session);
 		}else{
-			this.login="로그인실패..";
+			login="로그인실패";
 		}
+		return login;
 	}
-	public String toString(){
-		return "Welcome "+name+"("+gender+") "+age+"살";
+	public String join(MemberBean member){
+		String result="환영합니다..";
+		System.out.println("회원가입시 사용한 아이디는 "+member.getId());
+		System.out.println("회원가입시 사용한 비번은 "+member.getPw());
+		System.out.println("회원가입시 사용한 이름은 "+member.getName());
+		System.out.println("회원가입시 사용한 SSN은 "+member.getSsn());
+		session=member;
+		return result;
 	}
 }

@@ -4,8 +4,6 @@ import com.hanbit.oop.service.BMIService;
 import com.hanbit.oop.service.CalcService;
 import com.hanbit.oop.service.GradeService;
 import com.hanbit.oop.service.LeapYearService;
-import com.hanbit.oop.service.LoginService;
-import com.hanbit.oop.service.SSNService;
 import com.hanbit.oop.service.SecondService;
 
 public class Controller {
@@ -15,8 +13,6 @@ public class Controller {
 		CalcService cal=new CalcService();
 		LeapYearService ls=new LeapYearService();
 		GradeService gs=new GradeService();
-		LoginService login=new LoginService();
-		SSNService ss=new SSNService();
 		SecondService sce=new SecondService();
 		
 		while (true) {
@@ -88,16 +84,16 @@ public class Controller {
 				String id=s.next();
 				System.out.println("PW를 입력해주세요..");
 				String pw=s.next();
-				String loginResult=login.excute(id, pw);
-				System.out.println(loginResult);
+		//		String loginResult=login.excute(id, pw);
+		//		System.out.println(loginResult);
 				break;
 			case "7":
 				System.out.println("이름을 입력해주세요..");
 				String name3=s.next();
 				System.out.println("주민등록번호를 입력해주세요..");
 				String ssn=s.next();
-				String result3=ss.excute(name3, ssn);
-				System.out.println(result3);
+			//	String result3=ss.excute(name3, ssn);
+			//	System.out.println(result3);
 				break;
 			case "8":
 				System.out.println("초를 입력해주세요..");
