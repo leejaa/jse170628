@@ -1,4 +1,4 @@
-package com.hanbit.oop.service;
+package com.hanbit.oop.serviceImpl;
 
 public class CalcService {
 	private int n1,n2,result;

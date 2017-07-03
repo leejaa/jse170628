@@ -1,4 +1,4 @@
-package com.hanbit.oop.service;
+package com.hanbit.oop.serviceImpl;
 
 import com.hanbit.oop.domain.RankingBean;
 

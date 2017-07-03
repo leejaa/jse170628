@@ -1,10 +1,11 @@
 package com.hanbit.oop.controller;
 import java.util.Scanner;
-import com.hanbit.oop.service.BMIService;
-import com.hanbit.oop.service.CalcService;
-import com.hanbit.oop.service.GradeService;
-import com.hanbit.oop.service.LeapYearService;
-import com.hanbit.oop.service.SecondService;
+
+import com.hanbit.oop.serviceImpl.BMIService;
+import com.hanbit.oop.serviceImpl.CalcService;
+import com.hanbit.oop.serviceImpl.GradeServiceImpl;
+import com.hanbit.oop.serviceImpl.LeapYearService;
+import com.hanbit.oop.serviceImpl.SecondService;
 
 public class Controller {
 	public static void main(String[] args) {
@@ -12,7 +13,7 @@ public class Controller {
 		BMIService bs=new BMIService();
 		CalcService cal=new CalcService();
 		LeapYearService ls=new LeapYearService();
-		GradeService gs=new GradeService();
+		GradeServiceImpl gs=new GradeServiceImpl();
 		SecondService sce=new SecondService();
 		
 		while (true) {

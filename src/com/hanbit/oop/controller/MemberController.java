@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 import com.hanbit.oop.domain.MemberBean;
 import com.hanbit.oop.domain.RankingBean;
-import com.hanbit.oop.service.CalendarService;
-import com.hanbit.oop.service.MemberService;
-import com.hanbit.oop.service.RankingService;
+import com.hanbit.oop.serviceImpl.CalendarService;
+import com.hanbit.oop.serviceImpl.MemberServiceImpl;
+import com.hanbit.oop.serviceImpl.RankingService;
 
 public class MemberController {
 	public static void main(String[] args) {
 		Scanner s=new Scanner(System.in);
-		MemberService ms=new MemberService();
+		MemberServiceImpl ms=new MemberServiceImpl();
 		CalendarService cs=new CalendarService();
 		MemberBean member=new MemberBean();
 		RankingBean ranking=new RankingBean();

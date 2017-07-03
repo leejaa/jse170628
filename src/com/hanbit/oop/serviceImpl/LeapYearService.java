@@ -1,4 +1,4 @@
-package com.hanbit.oop.service;
+package com.hanbit.oop.serviceImpl;
 
 public class LeapYearService {
 	private int year;
