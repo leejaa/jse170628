@@ -11,4 +11,5 @@ public interface AdminService {
 	public MemberBean getFindMember(String id);
 	public void setMemberByName(String name);
 	public MemberBean[] getMemberByName();
+	public String getMemberByNameList();
 }

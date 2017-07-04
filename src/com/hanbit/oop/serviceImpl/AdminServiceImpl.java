@@ -67,9 +67,9 @@ public class AdminServiceImpl implements AdminService{
 				System.out.println("이름 찾았습니다 ! 현재 findingCnt는 "+findingCnt);
 			}
 		}
-		
 		memberByName=new MemberBean[findingCnt];
 		findingCnt=0;
+		
 		for(int i=0;i<count;i++){
 			if(name.equals(members[i].getName())){
 				findingCnt++;
@@ -77,5 +77,13 @@ public class AdminServiceImpl implements AdminService{
 				memberByName[findingCnt-1]=members[i];
 			}
 		}
+	}
+	@Override
+	public String getMemberByNameList() {
+		String memberByNameList="";
+		for(int i=0;i<memberByName.length;i++){
+			memberByNameList+="아이디 : "+memberByName[i].getId()+"/ 이름 :"+memberByName[i].getName()+"\n";
+		}
+		return memberByNameList;
 	}
 }
