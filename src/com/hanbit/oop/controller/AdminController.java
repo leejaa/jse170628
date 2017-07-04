@@ -9,8 +9,9 @@ public class AdminController {
 	public static void main(String[] args) {
 		String sCount=JOptionPane.showInputDialog("관리자님 총회원수를 입력해주세요");
 		AdminService service=new AdminServiceImpl(Integer.parseInt(sCount));
-		MemberBean member=new MemberBean();
+		MemberBean member=null;
 		while(true){
+			member=new MemberBean();
 			switch(JOptionPane.showInputDialog("0.종료 1.회원추가 2.회원수보기 3.회원목록보기")){
 			case "0":
 				return;
