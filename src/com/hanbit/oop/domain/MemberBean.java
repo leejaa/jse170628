@@ -27,6 +27,6 @@ public class MemberBean {
 		return name;
 	}
 	public String toString(){
-		return String.format("%s, %s, %s", id,pw,name);
+		return String.format("ID : %s, PW : %s, NAME : %s", id,pw,name);
 	}
 }

@@ -11,15 +11,16 @@ public class AdminController {
 		AdminService service=new AdminServiceImpl(Integer.parseInt(sCount));
 		MemberBean member=null;
 		while(true){
-			member=new MemberBean();
-			switch(JOptionPane.showInputDialog("0.종료 1.회원추가 2.회원수보기 3.회원목록보기")){
+			switch(JOptionPane.showInputDialog("0.종료 1.회원추가 2.회원수보기 3.회원목록보기 4.검색 by ID 5.검색 by NAME")){
 			case "0":
 				return;
 			case "1":
-				member.setId(JOptionPane.showInputDialog("ID를 입력하세요"));
-				member.setName(JOptionPane.showInputDialog("이름을 입력하세요"));
-				member.setPw(JOptionPane.showInputDialog("비밀번호를 입력하세요"));
-				member.setSsn(JOptionPane.showInputDialog("주민번호를 입력하세요"));
+				member=new MemberBean();
+				String[] arr=JOptionPane.showInputDialog("NAME/ID/PASS/SSN").split("/");
+				member.setName(arr[0]);
+				member.setId(arr[1]);
+				member.setPw(arr[2]);
+				member.setSsn(arr[3]);
 				service.addMember(member);
 				JOptionPane.showMessageDialog(null,"회원가입성공 !");
 				break;
@@ -28,6 +29,22 @@ public class AdminController {
 				break;
 			case "3":
 				JOptionPane.showConfirmDialog(null, service.toString());
+				break;
+			case "4":
+				JOptionPane.showConfirmDialog(null, service.getFindMember(JOptionPane.showInputDialog("찾고자 하는 ID를 입력해주세요")).toString());
+				break;
+			case "5":
+				String memberByNameList="";
+				service.setMemberByName(JOptionPane.showInputDialog("찾고자 하는 이름을 입력해주세요"));
+				
+				MemberBean[] memberByName=service.getMemberByName();
+				
+				System.out.println("배열의 총 개수는 "+memberByName.length+"개 이고 첫번째 회원 이름은 "+memberByName[0].getName()+"입니다");
+				
+				for(int i=0;i<memberByName.length;i++){
+					memberByNameList+="아이디 : "+memberByName[i].getId()+"/ 이름 :"+memberByName[i].getName();
+				}
+				JOptionPane.showMessageDialog(null, memberByNameList);
 				break;
 			}
 		}
