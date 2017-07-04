@@ -11,7 +11,7 @@ public class AdminController {
 		AdminService service=new AdminServiceImpl(Integer.parseInt(sCount));
 		MemberBean member=null;
 		while(true){
-			switch(JOptionPane.showInputDialog("0.종료 1.회원추가 2.회원수보기 3.회원목록보기 4.검색 by ID 5.검색 by NAME")){
+			switch(JOptionPane.showInputDialog("0.종료 1.회원추가 2.회원수보기 3.회원목록보기 4.검색 by ID 5.검색 by NAME 6.비밀번호변경")){
 			case "0":
 				return;
 			case "1":
@@ -47,6 +47,18 @@ public class AdminController {
 				}
 				System.out.println("배열의 총 개수는 "+memberByName.length+"개 이고 첫번째 회원 이름은 "+memberByName[0].getName()+"입니다");
 				JOptionPane.showMessageDialog(null, service.getMemberByNameList());
+				break;
+			case "6": 
+				MemberBean changingMember=new MemberBean();
+				String id=JOptionPane.showInputDialog("변경하고자 하는 회원의 아이디를 입력해주세요");
+				if(service.getFindMember(id)==null){
+					JOptionPane.showMessageDialog(null, "조회되는 아이디가 없습니다..");
+				}
+				String pw=JOptionPane.showInputDialog("새로운 비밀번호를 입력해주세요");
+				changingMember.setId(id);
+				changingMember.setPw(pw);
+				service.updataPw(changingMember);
+				JOptionPane.showMessageDialog(null, "비밀번호 변경 성공..");
 				break;
 			}
 		}

@@ -12,4 +12,5 @@ public interface AdminService {
 	public void setMemberByName(String name);
 	public MemberBean[] getMemberByName();
 	public String getMemberByNameList();
+	public void updataPw(MemberBean member);
 }

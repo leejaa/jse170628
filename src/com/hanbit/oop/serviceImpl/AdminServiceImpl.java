@@ -39,7 +39,7 @@ public class AdminServiceImpl implements AdminService{
 	public String toString(){
 		String memberList="";
 		for(int i=0;i<count;i++){
-			memberList+=members[i].getId()+"/ "+members[i].getName()+"/ "+members[i].getSsn()+"\n";
+			memberList+=members[i].getId()+"/ "+members[i].getName()+"/ "+members[i].getSsn()+"/"+members[i].getPw()+"\n";
 		}
 		return memberList;
 	}
@@ -68,13 +68,16 @@ public class AdminServiceImpl implements AdminService{
 			}
 		}
 		memberByName=new MemberBean[findingCnt];
-		findingCnt=0;
+		int j=0;
 		
 		for(int i=0;i<count;i++){
 			if(name.equals(members[i].getName())){
-				findingCnt++;
+				j++;
 				System.out.println("이름 찾았습니다 ! 현재 findingCnt는 "+findingCnt);
 				memberByName[findingCnt-1]=members[i];
+			}
+			if(findingCnt==j){
+				break;
 			}
 		}
 	}
@@ -85,5 +88,13 @@ public class AdminServiceImpl implements AdminService{
 			memberByNameList+="아이디 : "+memberByName[i].getId()+"/ 이름 :"+memberByName[i].getName()+"\n";
 		}
 		return memberByNameList;
+	}
+	@Override
+	public void updataPw(MemberBean member) {
+		MemberBean toChangeMember= getFindMember(member.getId());
+		if(toChangeMember==null){
+			
+		}
+		toChangeMember.setPw(member.getPw());
 	}
 }
