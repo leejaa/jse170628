@@ -31,11 +31,20 @@ public class AdminController {
 				JOptionPane.showConfirmDialog(null, service.toString());
 				break;
 			case "4":
-				JOptionPane.showConfirmDialog(null, service.getFindMember(JOptionPane.showInputDialog("찾고자 하는 ID를 입력해주세요")).toString());
+				MemberBean memberById=service.getFindMember(JOptionPane.showInputDialog("찾고자 하는 ID를 입력해주세요"));
+				if(memberById==null){
+					JOptionPane.showMessageDialog(null, "찾고자하는 아이디가 없습니다..");
+					break;
+				}
+				JOptionPane.showMessageDialog(null, memberById.toString());
 				break;
 			case "5":
 				service.setMemberByName(JOptionPane.showInputDialog("찾고자 하는 이름을 입력해주세요"));
 				MemberBean[] memberByName=service.getMemberByName();
+				if(memberByName.length==0){
+					JOptionPane.showMessageDialog(null, "찾고자 하는 이름이 없습니다..");
+					break;
+				}
 				System.out.println("배열의 총 개수는 "+memberByName.length+"개 이고 첫번째 회원 이름은 "+memberByName[0].getName()+"입니다");
 				JOptionPane.showMessageDialog(null, service.getMemberByNameList());
 				break;
