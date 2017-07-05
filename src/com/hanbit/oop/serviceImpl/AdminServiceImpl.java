@@ -97,20 +97,16 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void delete(String id) {
 		int index=0;
-		MemberBean newMembers[]=new MemberBean[count-1];
 		for(int i=0;i<count;i++){
 			if(id.equals(members[i].getId())){
 				index=i;
 				break;
 			}
 		}
-		for(int i=0;i<index;i++){
-			newMembers[i]=members[i];
-		}
 		for(int i=index;i<count-1;i++){
-			newMembers[i]=members[i+1];
+			members[i]=members[i+1];
 		}
+		members[count-1]=null;
 		count--;
-		members=newMembers;
 	}
 }
