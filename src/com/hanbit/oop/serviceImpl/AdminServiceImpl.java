@@ -44,7 +44,7 @@ public class AdminServiceImpl implements AdminService{
 		return memberList;
 	}
 	@Override
-	public MemberBean getFindMember(String id){
+	public MemberBean memberById(String id){
 		MemberBean member=null;
 		for(int i=0;i<count;i++){
 			if(id.equals(members[i].getId())){
@@ -74,7 +74,7 @@ public class AdminServiceImpl implements AdminService{
 			if(name.equals(members[i].getName())){
 				j++;
 				System.out.println("이름 찾았습니다 ! 현재 findingCnt는 "+findingCnt);
-				memberByName[findingCnt-1]=members[i];
+				memberByName[j-1]=members[i];
 			}
 			if(findingCnt==j){
 				break;
@@ -91,10 +91,26 @@ public class AdminServiceImpl implements AdminService{
 	}
 	@Override
 	public void updataPw(MemberBean member) {
-		MemberBean toChangeMember= getFindMember(member.getId());
-		if(toChangeMember==null){
-			
-		}
+		MemberBean toChangeMember= memberById(member.getId());
 		toChangeMember.setPw(member.getPw());
+	}
+	@Override
+	public void delete(String id) {
+		int index=0;
+		MemberBean newMembers[]=new MemberBean[count-1];
+		for(int i=0;i<count;i++){
+			if(id.equals(members[i].getId())){
+				index=i;
+				break;
+			}
+		}
+		for(int i=0;i<index;i++){
+			newMembers[i]=members[i];
+		}
+		for(int i=index;i<count-1;i++){
+			newMembers[i]=members[i+1];
+		}
+		count--;
+		members=newMembers;
 	}
 }

@@ -11,7 +11,7 @@ public class AdminController {
 		AdminService service=new AdminServiceImpl(Integer.parseInt(sCount));
 		MemberBean member=null;
 		while(true){
-			switch(JOptionPane.showInputDialog("0.종료 1.회원추가 2.회원수보기 3.회원목록보기 4.검색 by ID 5.검색 by NAME 6.비밀번호변경")){
+			switch(JOptionPane.showInputDialog("0.종료 1.회원추가 2.회원수보기 3.회원목록보기 4.검색 by ID 5.검색 by NAME 6.비밀번호변경 7.회원탈퇴")){
 			case "0":
 				return;
 			case "1":
@@ -31,7 +31,7 @@ public class AdminController {
 				JOptionPane.showConfirmDialog(null, service.toString());
 				break;
 			case "4":
-				MemberBean memberById=service.getFindMember(JOptionPane.showInputDialog("찾고자 하는 ID를 입력해주세요"));
+				MemberBean memberById=service.memberById(JOptionPane.showInputDialog("찾고자 하는 ID를 입력해주세요"));
 				if(memberById==null){
 					JOptionPane.showMessageDialog(null, "찾고자하는 아이디가 없습니다..");
 					break;
@@ -51,14 +51,21 @@ public class AdminController {
 			case "6": 
 				MemberBean changingMember=new MemberBean();
 				String id=JOptionPane.showInputDialog("변경하고자 하는 회원의 아이디를 입력해주세요");
-				if(service.getFindMember(id)==null){
+				if(service.memberById(id)==null){
 					JOptionPane.showMessageDialog(null, "조회되는 아이디가 없습니다..");
+					break;
 				}
 				String pw=JOptionPane.showInputDialog("새로운 비밀번호를 입력해주세요");
 				changingMember.setId(id);
 				changingMember.setPw(pw);
 				service.updataPw(changingMember);
 				JOptionPane.showMessageDialog(null, "비밀번호 변경 성공..");
+				break;
+			case "7" :
+				service.delete(JOptionPane.showInputDialog("탈퇴하고자 하는 회원의 아이디를 입력해주세요"));
+				JOptionPane.showMessageDialog(null,"탈퇴가 완료되었습니다..");
+				break;
+			default :
 				break;
 			}
 		}

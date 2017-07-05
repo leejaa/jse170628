@@ -8,9 +8,10 @@ public interface AdminService {
 	public int countMembers();
 	public int getCount();
 	public void setCount();
-	public MemberBean getFindMember(String id);
+	public MemberBean memberById(String id);
 	public void setMemberByName(String name);
 	public MemberBean[] getMemberByName();
 	public String getMemberByNameList();
 	public void updataPw(MemberBean member);
+	public void delete(String id);
 }
